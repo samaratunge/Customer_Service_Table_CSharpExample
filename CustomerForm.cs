@@ -34,7 +34,8 @@ namespace CustomerService
             customer.customerID = CustomerIDcomboBox.Text.Trim(); 
             customer.customerName = cusNameTextBox.Text.Trim();
             customer.customerAddress = cusAddressTextBox.Text.Trim(); 
-            customer.customerRequirement = cusRequireTextBox.Text.Trim(); ;
+            customer.customerRequirement = cusRequireTextBox.Text.Trim();
+            //Call the method in my Customer DB (Data Access class)
             customerDB.customerAddorUpdate(customer);
             
             CustomerIDcomboBox.Text = "";
@@ -42,6 +43,7 @@ namespace CustomerService
             cusAddressTextBox.Text = "";
             cusRequireTextBox.Text = "";
             CustomerIDcomboBox.Items.Clear();
+            //Add Ids again to for next selection
             CustomerIDcomboBox.Items.AddRange(customerDB.getCustomerIDs());
         }
         private void cusNameTextBox_textchanged(object sender, EventArgs e)
@@ -155,10 +157,12 @@ namespace CustomerService
             customerID = CustomerIDcomboBox.Text.Trim();
             if(customerID != null)
             {
+                //Use Customer ID to delete
                 customerDB.deleteCustomer(customerID);                
             }
             CustomerIDcomboBox.Text = "";
             CustomerIDcomboBox.Items.Clear();
+            //Delete and refresh the items
             CustomerIDcomboBox.Items.AddRange(customerDB.getCustomerIDs());
             cusNameTextBox.Text = "";
             cusAddressTextBox.Text = "";

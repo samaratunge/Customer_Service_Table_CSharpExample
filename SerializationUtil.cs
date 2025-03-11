@@ -8,6 +8,11 @@ using System.Text.Json;
 
 namespace CustomerService
 {
+    /**
+     * This is Generic Serilizer class usable for any object
+     * You can use serialization and deserialization both in once
+     * 
+     */
     static class SerializationUtil<T>
     {
         static string lastError = "";
